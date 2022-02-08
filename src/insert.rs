@@ -44,6 +44,11 @@ impl<T> Insert<T> {
         // https://clickhouse.yandex/docs/en/query_language/syntax/#syntax-identifiers
         let query = format!("INSERT INTO {}({}) FORMAT RowBinary", table, fields);
         pairs.append_pair("query", &query);
+
+        for (name, value) in &client.options {
+            pairs.append_pair(name, value);
+        }
+
         drop(pairs);
 
         let mut builder = Request::post(url.as_str());
