@@ -50,7 +50,7 @@ clickhouse-derive = { version = "0.1.1", path = "derive" }
 thiserror = "1.0.16"
 serde = "1.0.106"
 bytes = "1"
-tokio = { version = "1.0.1", features = ["rt", "macros"] }
+tokio = { version = "1.0.1", features = ["rt", "macros", "sync"] }
 hyper = { version = "0.14", features = ["client", "tcp", "http1", "stream"] }
 url = "2.1.1"
 smallvec = "1.4.0"
@@ -60,6 +60,7 @@ serde_json = { version = "1.0.68", optional = true }
 static_assertions = "1.1.0"
 async-compression = { version = "0.3.6", features = ["tokio"], optional = true }
 tokio-util = { version = "0.6.0", default-features = false, features = ["codec", "io"], optional = true }
+tokio-stream = "0.1"
 lz4-sys = { version = "1.9.2", optional = true }
 clickhouse-rs-cityhash-sys = { version = "0.1.2", optional = true }
 sealed = "0.3.0"
