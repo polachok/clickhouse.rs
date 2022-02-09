@@ -217,8 +217,11 @@ impl<T> Insert<T> {
 
     fn abort(&mut self) {
         if let Some(sender) = self.sender.take() {
+            let _ = sender.try_send(Err(std::io::Error::new(
+                std::io::ErrorKind::ConnectionAborted,
+                "bla bla",
+            )));
             //sender.abort();
-            todo!()
         }
     }
 }
