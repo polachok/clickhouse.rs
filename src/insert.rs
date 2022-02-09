@@ -46,9 +46,10 @@ where
         Chunks(Box::new(match compression {
             Compression::None => Inner::Plain(s),
             #[cfg(feature = "gzip")]
-            Compression::Gzip => {
-                Inner::Gzip(ReaderStream::new(GzipEncoder::new(StreamReader::new(s))))
-            }
+            Compression::Gzip => Inner::Gzip(ReaderStream::new(GzipEncoder::with_quality(
+                StreamReader::new(s),
+                async_compression::Level::Fastest,
+            ))),
             _ => todo!(),
         }))
     }
